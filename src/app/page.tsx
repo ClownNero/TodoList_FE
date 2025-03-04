@@ -9,7 +9,7 @@ export default function Home() {
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
         <main className="flex-1 overflow-y-auto p-4">
-          <div className="mx-auto max-w-2xl">
+          <div className="max-w-2xl">
             <TodoList />
           </div>
         </main>
