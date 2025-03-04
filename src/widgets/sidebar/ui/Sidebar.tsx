@@ -51,7 +51,7 @@ export function Sidebar() {
   ];
 
   return (
-    <aside className="h-full w-56 border-r border-[#E5E7EB] bg-[#F3F4F6] p-4">
+    <aside className="w-56 border-r border-[#E5E7EB] bg-[#F3F4F6] p-4">
       <nav>
         <ul className="space-y-1">
           {filters.map((filter) => (
