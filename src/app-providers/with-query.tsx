@@ -10,7 +10,7 @@ export function WithQuery({ children }: { children: ReactNode }) {
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 60 * 1000,
+            staleTime: 60 * 1000 * 5,
           },
         },
       }),
@@ -20,7 +20,7 @@ export function WithQuery({ children }: { children: ReactNode }) {
     <QueryClientProvider client={queryClient}>
       {children}
       <ReactQueryDevtools
-        initialIsOpen={process.env.NEXT_PUBLIC_MODE === 'loca'}
+        initialIsOpen={process.env.NEXT_PUBLIC_MODE === 'local'}
       />
     </QueryClientProvider>
   );

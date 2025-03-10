@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
-import { useTodoStore } from '@/app-providers/with-store';
+import { useUpdateTodoMutation } from '../model/mutations';
 
 interface EditTodoModalProps {
   id: string;
@@ -17,7 +17,7 @@ export function EditTodoModal({
   onClose,
 }: EditTodoModalProps) {
   const [title, setTitle] = useState(initialTitle);
-  const { editTodo } = useTodoStore();
+  const { mutate: updateTodo, isPending } = useUpdateTodoMutation(); // ✅ React Query 뮤테이션 훅
 
   if (!isOpen) {
     return null;
@@ -26,8 +26,7 @@ export function EditTodoModal({
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (title.trim()) {
-      editTodo(id, title);
-      onClose();
+      updateTodo({ id, todoData: { title } }, { onSuccess: onClose }); // ✅ 성공 시 모달 닫기
     }
   };
 
@@ -43,12 +42,13 @@ export function EditTodoModal({
             fullWidth
             autoFocus
             className="mb-4"
+            disabled={isPending}
           />
           <div className="flex justify-end gap-2">
             <Button type="button" variant="secondary" onClick={onClose}>
               취소
             </Button>
-            <Button type="submit">저장</Button>
+            <Button type="submit">{isPending ? '저장 중...' : '저장'}</Button>
           </div>
         </form>
       </div>

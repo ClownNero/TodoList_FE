@@ -1,7 +1,7 @@
 import classNames from 'classnames';
-import { ToggleTodo } from '@/features/toggle-todo/ui/ToggleTodo';
-import { EditTodoButton } from '@/features/edit-todo/ui/EditTodoButton';
-import { DeleteTodoButton } from '@/features/delete-todo/ui/DeleteTodoButton';
+import { ToggleTodo } from '@/features/todo/ui/ToggleTodo';
+import { EditTodoButton } from '@/features/todo/ui/EditTodoButton';
+import { DeleteTodoButton } from '@/features/todo/ui/DeleteTodoButton';
 import { Todo } from '@/shared/types/todo';
 
 interface TodoItemProps {
@@ -9,26 +9,27 @@ interface TodoItemProps {
 }
 
 export function TodoItem({ todo }: TodoItemProps) {
-  const { id, title, completed } = todo;
+  const { id, title, status } = todo;
+  const isCompleted = status === 'completed'; // ✅ 상태 변경 적용
 
   return (
     <div
       className={classNames('flex items-center gap-3 rounded-md border p-3', {
-        'bg-white': !completed,
-        'bg-[#F3F4F6] bg-opacity-50': completed,
+        'bg-white': !isCompleted,
+        'bg-gray-100 bg-opacity-50': isCompleted,
       })}
     >
-      <ToggleTodo id={id} completed={completed} />
+      <ToggleTodo id={id} status={status} /> {/* ✅ 상태 전달 */}
       <span
         className={classNames('flex-grow', {
-          'text-[#1F2937]': !completed,
-          'text-[#6B7280] line-through': completed,
+          'text-gray-800': !isCompleted,
+          'text-gray-500 line-through': isCompleted,
         })}
       >
         {title}
       </span>
       <div className="flex items-center gap-1">
-        <EditTodoButton id={id} title={title} completed={completed} />
+        <EditTodoButton id={id} title={title} completed={isCompleted} />
         <DeleteTodoButton id={id} />
       </div>
     </div>

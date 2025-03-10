@@ -1,15 +1,19 @@
 import { IconButton } from '@/shared/ui/IconButton';
-import { useTodoStore } from '@/app-providers/with-store';
+import { useDeleteTodoMutation } from '../model/mutations';
 
 interface DeleteTodoButtonProps {
   id: string;
 }
 
 export function DeleteTodoButton({ id }: DeleteTodoButtonProps) {
-  const { deleteTodo } = useTodoStore();
+  const { mutate: deleteTodo, isPending } = useDeleteTodoMutation();
 
   return (
-    <IconButton variant="danger" onClick={() => deleteTodo(id)}>
+    <IconButton
+      variant="danger"
+      onClick={() => deleteTodo(id)}
+      disabled={isPending}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-5 w-5"

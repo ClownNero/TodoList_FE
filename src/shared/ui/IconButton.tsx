@@ -17,9 +17,9 @@ export function IconButton({
       className={classNames(
         'rounded-md p-1 transition-colors',
         {
-          'text-[#9CA3AF] hover:bg-[#F3F4F6] hover:text-[#4B5563]':
+          'text-gray-400 hover:bg-gray-100 hover:text-gray-600':
             variant === 'default',
-          'text-[#EF4444] hover:bg-[#FEE2E2] hover:text-[#DC2626]':
+          'text-danger hover:bg-[#FEE2E2] hover:text-danger-hover':
             variant === 'danger',
         },
         className,
