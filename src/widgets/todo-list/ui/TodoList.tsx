@@ -3,8 +3,6 @@
 import { useFilterStore } from '@/app-providers/with-store';
 import { TodoItem } from '@/entities/todo/ui/TodoItem';
 import { useTodoQuery } from '@/features/todo/model/queries';
-import { TodoStatus } from '@/shared/types/todo';
-import { useState } from 'react';
 
 export function TodoList() {
   const { activeFilter } = useFilterStore(); // ✅ Zustand에서 필터 상태 가져오기

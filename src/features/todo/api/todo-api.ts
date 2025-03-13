@@ -1,7 +1,7 @@
 import { CreateTodoDTO, Todo, UpdateTodoDTO } from '@/shared/types/todo';
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3001/api/todos';
+const BASE_URL = `${process.env.NEXT_PUBLIC_API_URL}/api/todos`;
 
 export const todoApi = {
   getTodos: async () => {
